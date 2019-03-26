@@ -84,6 +84,7 @@ IMAGE_INSTALL += "\
 	samegame \
 	minehunt \
 	atmel-qt-demo-init \
+	hostapd \
 "
 
 inherit core-image
