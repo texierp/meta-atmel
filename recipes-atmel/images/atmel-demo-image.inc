@@ -53,6 +53,7 @@ IMAGE_INSTALL = "\
     gdb \
     usbutils \
     wget \
+    hostapd \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 
