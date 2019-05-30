@@ -106,6 +106,7 @@ IMAGE_INSTALL += "\
 	whiteboard \
 	wildwest \
 	hostapd \
+	9bit \
 "
 
 IMAGE_INSTALL_append_at91sam9 = " \
