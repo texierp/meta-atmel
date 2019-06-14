@@ -55,6 +55,7 @@ IMAGE_INSTALL = "\
     wget \
     hostapd \
     9bit \
+    rng-tools \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     "
 
