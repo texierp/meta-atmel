@@ -16,6 +16,7 @@ SRCREV = "17a984bc196f124e7fb3a98eb2a6c96368181340"
 DEPENDS = "virtual/kernel u-boot-mkimage-native dtc-native"
 
 S = "${WORKDIR}/git"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 # Ensure that the machine is properly set
 AT91BOOTSTRAP_MACHINE ??= "${MACHINE}"
