@@ -13,4 +13,4 @@ SERIAL_CONSOLES ?= "115200;ttyS0"
 
 EXTRA_IMAGEDEPENDS += "sam-ba-native"
 
-IMAGE_FSTYPES ?= "tar.gz wic"
+IMAGE_FSTYPES ?= "tar.gz wic wic.bmap"

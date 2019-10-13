@@ -16,4 +16,4 @@ SERIAL_CONSOLES ?= "115200;ttyS0"
 WIC_CREATE_EXTRA_ARGS ?= "--no-fstab-update"
 EXTRA_IMAGEDEPENDS += "sam-ba-native"
 
-IMAGE_FSTYPES ?= "tar.gz wic"
+IMAGE_FSTYPES ?= "tar.gz wic wic.bmap"
