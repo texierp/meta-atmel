@@ -3,7 +3,8 @@ FILESEXTRAPATHS_prepend_at91sam9 := "${THISDIR}/files:"
 
 ATMEL_PATCHES = "file://atmel-color-format-force.patch \
             file://0001-make-QGraphicsItem-update-virtual.patch \
-            file://0004-Provide-access-to-linuxfb-dri-fd-through-platform.patch \
+            ${@bb.utils.contains('QT_MODULE_BRANCH', '5.11', 'file://0004-Provide-access-to-linuxfb-dri-fd-through-platform-old-version.patch', \
+				'file://0004-Provide-access-to-linuxfb-dri-fd-through-platform.patch', d)} \
             file://0005-Support-DRM-KMS-planes-in-linuxfb-DRM-backend.patch "
 
 SRC_URI_append_at91sam9 = " ${ATMEL_PATCHES}"
