@@ -1,0 +1,44 @@
+From f348ac5de0918a52d9da281cc115558cd27860de Mon Sep 17 00:00:00 2001
+From: Pierre-Jean Texier <pierre-jean.texier@lafon.fr>
+Date: Tue, 6 Apr 2021 20:55:32 +0200
+Subject: [PATCH] Makefile: move 'nostartfiles' option to CPPFLAGS
+
+Recent binutils changes dropping unsupported options [1] caused a build
+issue:
+
+2021-04-05 20:05:33 - INFO     - | arm-poky-linux-gnueabi-ld: Error: unable to disambiguate: -nostartfiles (did you mean --nostartfiles ?)
+2021-04-05 20:05:33 - INFO     - | make: *** [Makefile:335: binaries/sama5d27_som1_ek-sdcardboot-uboot-3.10.1-rc1.bin] Error 1
+2021-04-05 20:05:33 - INFO     - | WARNING: exit code 1 from a shell command.
+
+[1]: https://sourceware.org/git/?p=binutils-gdb.git;a=commit;h=983d925d
+
+Signed-off-by: Pierre-Jean Texier <pierre-jean.texier@lafon.fr>
+---
+ Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index a62ac58..cd1ab2e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -251,7 +251,7 @@ NOSTDINC_FLAGS := -nostdinc -isystem "$(shell $(CC) -print-file-name=include)"
+ 
+ CPPFLAGS=$(NOSTDINC_FLAGS) -ffunction-sections -g -Os -Wall \
+ 	-mno-unaligned-access \
+-	-fno-stack-protector -fno-common -fno-builtin -fno-jump-tables -fno-pie \
++	-fno-stack-protector -fno-common -fno-builtin -fno-jump-tables -fno-pie -nostartfiles \
+ 	-I$(INCL) -Icontrib/include -Iinclude -Ifs/include \
+ 	-I$(CONFIG)/at91bootstrap-config \
+ 	-DAT91BOOTSTRAP_VERSION=\"$(VERSION)$(REV)$(SCMINFO)\" -DCOMPILE_TIME="\"$(BUILD_DATE)\""
+@@ -283,7 +283,7 @@ endif
+ #    --cref:    add cross reference to map file
+ #  -lc 	   : 	tells the linker to tie in newlib
+ #  -lgcc   : 	tells the linker to tie in newlib
+-LDFLAGS=-nostartfiles -Map=$(BINDIR)/$(BOOT_NAME).map --cref -static
++LDFLAGS=-Map=$(BINDIR)/$(BOOT_NAME).map --cref -static
+ LDFLAGS+=-T $(link_script) $(GC_SECTIONS) -Ttext $(LINK_ADDR)
+ 
+ ifneq ($(DATA_SECTION_ADDR),)
+-- 
+2.17.1
+
